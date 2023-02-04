@@ -1,8 +1,7 @@
-import machine
-import time
+from machine import Pin
 
-led = machine.Pin(19,machine.Pin.OUT)
-btn = machine.Pin(5,machine.Pin.IN)
+led = Pin(2,Pin.OUT)
+btn = Pin(0,Pin.IN)
 
 while True:
     btn_stat = btn.value()
