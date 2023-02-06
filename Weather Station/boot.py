@@ -1,8 +1,3 @@
-# This file is executed on every boot (including wake-boot from deepsleep)
-#import esp
-#esp.osdebug(None)
-#import webrepl
-#webrepl.start()
 try:
   import usocket as socket
 except:
@@ -19,8 +14,8 @@ esp.osdebug(None)
 import gc
 gc.collect()
 
-ssid = 'vivo1952'
-password = '96981234'
+ssid = 'your ssid'
+password = 'your password'
 
 station = network.WLAN(network.STA_IF)
 
@@ -39,5 +34,4 @@ while True:
 print('Connection successful')
 print(station.ifconfig())
 
-# sensor = dht.DHT22(Pin(14))
 sensor = dht.DHT11(Pin(33))
