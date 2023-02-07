@@ -1,43 +1,48 @@
-try:
-  import usocket as socket
-except:
-  import socket
-
+#*****************WiFi AP***********************************
 import network
 
-import esp
-esp.osdebug(None)
+wifi = network.WLAN(network.AP_IF)
+wifi.active(True)
 
-import gc
-gc.collect()
+wifi.config(essid = 'ISAesp', password = '12345678')
 
-ssid = 'ISAesp'
-password = '123456789'
+print(wifi.ifconfig())
 
-ap = network.WLAN(network.AP_IF)
-ap.active(True)
-ap.config(essid=ssid, password=password)
+#********************WiFi station********************************************
 
-while ap.active() == False:
-  pass
+#import network
 
-print('Connection successful')
-print(ap.ifconfig())
+#wifi = network.WLAN(network.STA_IF)
+#wifi.active(True)
 
-def web_page():
-  html = """<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
-  <body><h1>Hello, World!</h1></body></html>"""
-  return html
+#wifi.connect('Realme6', '12345678')
+#while not wifi.isconnected():
+#    pass
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('', 80))
-s.listen(5)
+#if wifi.isconnected():
+#    print(wifi.ifconfig())
 
-while True:
-  conn, addr = s.accept()
-  print('Got a connection from %s' % str(addr))
-  request = conn.recv(1024)
-  print('Content = %s' % str(request))
-  response = web_page()
-  conn.send(response)
-  conn.close()
+#********************WiFi with time limit************************
+#import network
+#import time
+
+#timeout = 0
+#wifi = network.WLAN(network.STA_IF)
+
+#wifi.active(False)
+#time.sleep(0.5)
+#wifi.active(True)
+
+#wifi.connect('Reelmi', '12345678')
+
+#if not wifi.isconnected():
+#    print('connecting...')
+#    while(not wifi.isconnected() and timeout < 5):
+#        print(5 - timeout)
+#        timeout = timeout + 1
+#        time.sleep(1)
+        
+#if(wifi.isconnected()):
+#    print("Connected")
+#else:
+#    print("Time Out")
